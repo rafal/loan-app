@@ -13,6 +13,7 @@
     <main>
       <LoanCalculator />
       <UserDetailsCard class="my-4" />
+      <PersonalInformation />
     </main>
   </div>
 </template>
@@ -20,11 +21,13 @@
 <script>
 import LoanCalculator from "@/components/LoanCalculator.vue";
 import UserDetailsCard from "@/components/UserDetailsCard.vue";
+import PersonalInformation from "./components/PersonalInformation.vue";
 
 export default {
   components: {
     LoanCalculator,
     UserDetailsCard,
+    PersonalInformation,
   },
 };
 </script>
