@@ -31,20 +31,16 @@
                 style="width: 50px"
                 type="number"
               ></b-form-input>
-
-              <div class="monthly-payment">
-                <span class="label">Monthly Payment</span>
-                <span class="monthly-payment_value"
-                  >{{ monthlyPayment
-                  }}<span style="font-size: 12px; vertical-align: text-top"
-                    >€</span
-                  ></span
-                >
-              </div></b-form
-            >
+            </b-form>
+            <div class="monthly-payment">
+              <span class="label">Monthly Payment</span>
+              <span class="monthly-payment_value"
+                >{{ monthlyPayment }}<span class="euro">€</span></span
+              >
+            </div>
           </b-col>
 
-          <b-col cols="1" class="px-2">
+          <b-col cols="1" class="px-0">
             <b-button
               variant="white"
               class="confirm-btn"
@@ -94,16 +90,8 @@
                   white-space: nowrap;
                 "
                 class="loan-summary_details"
-                >{{ amount
-                }}<span
-                  style="
-                    font-size: 12px;
-                    vertical-align: text-bottom;
-                    line-height: 22px;
-                  "
-                  >€</span
-                >
-                / {{ duration }} months</span
+                >{{ amount }}<span class="euro">€</span> /
+                {{ duration }} months</span
               >
             </div>
           </b-col>
@@ -123,7 +111,7 @@ export default {
   data() {
     return {
       showAmountRange: false,
-      selected: true,
+      selected: false,
       amount: 2700,
       duration: 36,
       amountOptions: this.generateAmountOptions(),
@@ -190,6 +178,21 @@ export default {
 };
 </script>
 <style scoped>
+@media screen and (max-width: 600px) {
+  /* Adjust breakpoint as needed */
+  .loan-calculator_selected {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the start of the container */
+    padding: 16px; /* Add some padding for better spacing */
+  }
+
+  .editor-label,
+  .input,
+  .confirm-btn {
+    width: 100%; /* Make elements take full width */
+    margin-bottom: 10px; /* Add some space between elements */
+  }
+}
 /* Forward transition */
 .slide-fade-forward-enter-active,
 .slide-fade-forward-leave-active {
@@ -215,7 +218,7 @@ export default {
 .loan-calculator {
   background-color: #2b0a57;
   border-radius: 30px;
-  height: 58px;
+  min-height: 58px;
   color: #fdfdfd;
   transition: all 0.3s ease;
 }
@@ -389,5 +392,17 @@ input[type="number"] {
   align-items: center;
   pointer-events: none; /* Makes it unclickable */
   /* Other styling as needed */
+}
+
+.euro {
+  font-size: 12px;
+  vertical-align: text-top;
+  line-height: 16px;
+
+  @media (max-width: 600px) {
+    font-size: 10px;
+    line-height: 12px;
+    vertical-align: text-top;
+  }
 }
 </style>
