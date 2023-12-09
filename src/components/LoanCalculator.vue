@@ -7,8 +7,11 @@
     >
       <b-container fluid>
         <b-row class="align-items-center justify-content-between">
-          <b-col cols="11" class="input-group justify-content-center">
-            <b-form inline>
+          <b-col
+            cols="11"
+            class="input-group d-flex align-items-center justify-content-center"
+          >
+            <div class="input-container d-flex align-items-center">
               <label for="amount" class="label">Amount</label>
               <b-form-input
                 id="amount"
@@ -19,10 +22,12 @@
                 max="10000"
                 style="max-width: 70px"
               ></b-form-input>
-              <div v-if="showAmountRange" class="range-info">
-                {{ amountRangeInfo }}
-              </div>
+              <span class="euro-symbol">€</span>
+            </div>
 
+            <div
+              class="input-container d-flex align-items-center mb-2 mb-md-0 mx-md-4"
+            >
               <label for="duration" class="label">Duration</label>
               <b-form-input
                 id="duration"
@@ -31,8 +36,8 @@
                 style="width: 50px"
                 type="number"
               ></b-form-input>
-            </b-form>
-            <div class="monthly-payment">
+            </div>
+            <div class="monthly-payment mt-4 mt-lg-0">
               <span class="label">Monthly Payment</span>
               <span class="monthly-payment_value"
                 >{{ monthlyPayment }}<span class="euro">€</span></span
@@ -190,7 +195,6 @@ export default {
   .input,
   .confirm-btn {
     width: 100%; /* Make elements take full width */
-    margin-bottom: 10px; /* Add some space between elements */
   }
 }
 /* Forward transition */
@@ -230,13 +234,9 @@ export default {
   justify-content: space-between;
 }
 
-.input-group {
-  display: flex;
-  align-items: center;
-}
-
-.input-wrapper {
-  margin-right: 15px;
+.input-container {
+  display: inline-block;
+  position: relative;
 }
 
 .label {
@@ -246,6 +246,7 @@ export default {
   letter-spacing: 0;
   line-height: 24px;
   white-space: nowrap;
+  margin: 0;
 }
 
 .input {
@@ -351,11 +352,6 @@ export default {
     flex-direction: column;
   }
 
-  .input-wrapper {
-    margin-right: 0;
-    margin-bottom: 15px;
-  }
-
   .toggle-select {
     border-radius: 50%;
     border: none !important;
@@ -389,13 +385,11 @@ input[type="number"] {
 
 .euro-symbol {
   position: absolute;
-  right: 5px; /* Adjust as needed */
-  top: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  pointer-events: none; /* Makes it unclickable */
-  /* Other styling as needed */
+  right: 5px; /* Adjust for proper positioning */
+}
+
+#amount {
+  padding-right: 20px; /* Adjust based on the size of the Euro symbol */
 }
 
 .euro {
