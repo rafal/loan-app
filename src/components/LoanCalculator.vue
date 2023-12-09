@@ -253,6 +253,10 @@ export default {
   background: none;
   border: none;
   border-radius: 0;
+  border-bottom: 1px solid #d2d2d2aa;
+  &:hover {
+    border-bottom: 1px solid white;
+  }
 }
 
 .input::after {
