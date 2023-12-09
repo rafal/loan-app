@@ -1,6 +1,6 @@
 <template>
   <transition :name="transitionName" mode="out-in">
-    <div v-if="editing" key="editing" class="editor px-2">
+    <div v-if="editing" key="editing" class="editor px-4">
       <span class="editor-label">Change your contact info</span>
       <b-form inline>
         <label for="phone" class="label"
@@ -58,7 +58,7 @@
 export default {
   data() {
     return {
-      editing: true,
+      editing: false,
       user: {
         name: "Anna Maria Tamm Rodriguez Espinosa",
         id: 38912052254,
