@@ -83,11 +83,21 @@
     ></b-row>
     <b-row class="mt-3">
       <b-col cols="12" class="d-flex justify-content-around">
-        <img src="@/assets/horizontal-line.svg" alt="" style="max-width: 35%" />
+        <img
+          src="@/assets/horizontal-line.svg"
+          alt=""
+          style="max-width: 35%"
+          class="mx-2"
+        />
         <span style="font-style: italic; color: #dddddd; font-size: 14px"
           >Or</span
         >
-        <img src="@/assets/horizontal-line.svg" alt="" style="max-width: 35%" />
+        <img
+          src="@/assets/horizontal-line.svg"
+          alt=""
+          style="max-width: 35%"
+          class="mx-2"
+        />
       </b-col>
     </b-row>
     <b-row class="my-3">
@@ -127,7 +137,7 @@ export default {
         apartment: null,
         postal: null,
       },
-      addAddressManually: false,
+      addAddressManually: true,
       countries: [
         { text: "Germany", value: "DE" },
         { text: "France", value: "FR" },
