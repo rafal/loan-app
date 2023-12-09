@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app">
     <b-navbar toggleable>
       <div class="navbar-placeholder"></div>
       <!-- Placeholder div -->
@@ -10,27 +10,36 @@
         <img alt="menu" src="@/assets/menu.svg" />
       </b-navbar-toggle>
     </b-navbar>
-    <LoanCalculator />
+    <main>
+      <LoanCalculator />
+      <UserDetailsCard class="my-4" />
+    </main>
   </div>
 </template>
 
 <script>
 import LoanCalculator from "@/components/LoanCalculator.vue";
+import UserDetailsCard from "@/components/UserDetailsCard.vue";
 
 export default {
   components: {
     LoanCalculator,
+    UserDetailsCard,
   },
 };
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Open Sans-Light", Helvetica;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.navbar {
+  margin-bottom: 50px;
 }
 
 .navbar-placeholder {
@@ -42,5 +51,13 @@ export default {
 
 .navbar-toggler {
   border: none;
+}
+
+main {
+  margin: 0 16px;
+
+  @media (min-width: 768px) {
+    margin: 0 15%;
+  }
 }
 </style>
