@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkloan_app"]=self["webpackChunkloan_app"]||[]).push([[443],{3388:function(n,t,u){u.r(t),u.d(t,{default:function(){return i}});var a=function(){var n=this;n._self._c;return n._m(0)},s=[function(){var n=this,t=n._self._c;return t("div",{staticClass:"about"},[t("h1",[n._v("This is an about page")])])}],l=u(1001),e={},r=(0,l.Z)(e,a,s,!1,null,null,null),i=r.exports}}]);
+//# sourceMappingURL=about.a6319bac.js.map
