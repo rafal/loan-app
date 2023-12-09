@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <b-navbar toggleable>
+    <b-navbar toggleable sticky>
       <div class="navbar-placeholder"></div>
       <!-- Placeholder div -->
       <b-navbar-brand href="#" class="mx-auto"
@@ -14,6 +14,7 @@
       <LoanCalculator />
       <UserDetailsCard class="my-4" />
       <PersonalInformation />
+      <PepForm />
     </main>
   </div>
 </template>
@@ -22,12 +23,14 @@
 import LoanCalculator from "@/components/LoanCalculator.vue";
 import UserDetailsCard from "@/components/UserDetailsCard.vue";
 import PersonalInformation from "./components/PersonalInformation.vue";
+import PepForm from "./components/PepForm.vue";
 
 export default {
   components: {
     LoanCalculator,
     UserDetailsCard,
     PersonalInformation,
+    PepForm,
   },
 };
 </script>
@@ -42,6 +45,7 @@ export default {
 }
 
 .navbar {
+  background-color: white;
   margin-bottom: 50px;
 }
 
@@ -62,5 +66,15 @@ main {
   @media (min-width: 768px) {
     margin: 0 15%;
   }
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.pep-input {
+  font-weight: 300;
+  color: #413c3c;
+  font-size: 16px;
 }
 </style>
