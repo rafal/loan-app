@@ -74,25 +74,25 @@
         <b-col cols="12" sm="6" class="my-1"
           ><b-form-input
             class="pep-input"
-            v-model="text"
+            v-model="relationshipToPep"
             placeholder="Relationship to the PEP"
           ></b-form-input></b-col
         ><b-col cols="12" sm="6" class="my-1"
           ><b-form-input
             class="pep-input"
-            v-model="text"
+            v-model="pepRegion"
             placeholder="PEP Region"
           ></b-form-input></b-col
         ><b-col cols="12" sm="6" class="my-1"
           ><b-form-input
             class="pep-input"
-            v-model="text"
+            v-model="pepPosition"
             placeholder="PEP Position"
           ></b-form-input></b-col
         ><b-col cols="12" sm="6" class="my-1"
           ><b-form-input
             class="pep-input"
-            v-model="text"
+            v-model="durationAsPep"
             placeholder="Duration as PEP or related to a PEP"
           ></b-form-input></b-col
       ></b-row>
@@ -142,45 +142,45 @@
         <b-col cols="12" sm="6" class="my-1"
           ><b-form-input
             class="pep-input"
-            v-model="text"
+            v-model="firstName"
             placeholder="First Name"
           ></b-form-input></b-col
         ><b-col cols="12" sm="6" class="my-1"
           ><b-form-input
             class="pep-input"
-            v-model="text"
+            v-model="lastName"
             placeholder="Last Name"
           ></b-form-input></b-col
         ><b-col cols="12" sm="6" class="my-1"
           ><b-form-input
             class="pep-input"
-            v-model="text"
+            v-model="personalIdCode"
             placeholder="Personal ID code"
           ></b-form-input></b-col
         ><b-col cols="12" sm="6" class="my-1"
           ><b-form-input
             class="pep-input"
-            v-model="text"
+            v-model="residency"
             placeholder="Residency"
           ></b-form-input></b-col
         ><b-col cols="12" sm="6" class="my-1"
           ><b-form-input
             class="pep-input"
-            v-model="text"
+            v-model="birthPlace"
             placeholder="Birth place"
           ></b-form-input
         ></b-col>
         <b-col cols="12" sm="6" class="my-1"
           ><b-form-input
             class="pep-input"
-            v-model="text"
+            v-model="birthDate"
             placeholder="Birth date"
           ></b-form-input></b-col
       ></b-row>
       <div class="grid-container-2 my-2">
         <div class="item1">
           <b-form-checkbox
-            id="not-a-pep"
+            id="beneficial-owner-is-not-a-pep"
             v-model="beneficialOwnerIsNotAPep"
             name="beneficial-owner-is-not-a-pep"
           >
@@ -193,25 +193,25 @@
         <b-col cols="12" sm="6" class="my-1"
           ><b-form-input
             class="pep-input"
-            v-model="text"
+            v-model="beneificialOwnerRelationship"
             placeholder="Relationship to the PEP"
           ></b-form-input></b-col
         ><b-col cols="12" sm="6" class="my-1"
           ><b-form-input
             class="pep-input"
-            v-model="text"
+            v-model="beneficialOwnerPepRegion"
             placeholder="PEP region"
           ></b-form-input></b-col
         ><b-col cols="12" sm="6" class="my-1"
           ><b-form-input
             class="pep-input"
-            v-model="text"
+            v-model="beneficialOwnerPepPosition"
             placeholder="PEP position"
           ></b-form-input></b-col
         ><b-col cols="12" sm="6" class="my-1"
           ><b-form-input
             class="pep-input"
-            v-model="text"
+            v-model="beneficialOwnerDurationAsPep"
             placeholder="Duration as PEP or related to a PEP"
           ></b-form-input></b-col
       ></b-row>
@@ -225,6 +225,21 @@ export default {
     return {
       notAPep: true,
       ultimateBeneficiary: false,
+      beneficialOwnerIsNotAPep: false,
+      relationshipToPep: "",
+      pepRegion: "",
+      pepPosition: "",
+      durationAsPep: "",
+      firstName: "",
+      lastName: "",
+      personalIdCode: "",
+      residency: "",
+      birthPlace: "",
+      birthDate: "",
+      beneificialOwnerRelationship: "",
+      beneficialOwnerPepRegion: "",
+      beneficialOwnerPepPosition: "",
+      beneficialOwnerDurationAsPep: "",
     };
   },
   methods: {
