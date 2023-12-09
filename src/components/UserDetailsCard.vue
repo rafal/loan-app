@@ -1,27 +1,47 @@
 <template>
   <transition :name="transitionName" mode="out-in">
-    <div v-if="editing" key="editing" class="editor px-4">
-      <span class="editor-label">Change your contact info</span>
-      <b-form inline>
-        <label for="phone" class="label"
+    <div
+      v-if="editing"
+      key="editing"
+      class="editor p-3 d-flex flex-column flex-sm-row justify-content-between align-items-center"
+    >
+      <div class="editor-label-wrapper d-flex flex-column">
+        <span class="editor-label">Change your contact info</span>
+        <span v-if="phoneError" class="error">Incorrect phone number</span>
+        <span v-if="emailError" class="error">Incorrect email</span>
+      </div>
+      <div class="d-flex my-2 my-sm-0">
+        <label for="phone" class="d-flex align-items-center m-0"
           ><img src="@/assets/phone.svg"
         /></label>
         <b-form-input
           id="phone"
           v-model="user.phone"
           class="input px-1"
+          :class="{ 'input-error': phoneError }"
           type="tel"
           style="width: fit-content"
         ></b-form-input>
-        <label for="email" class="label"><img src="@/assets/mail.svg" /></label>
+      </div>
+      <div class="d-flex my-2 my-sm-0">
+        <label for="email" class="d-flex align-items-center m-0"
+          ><img src="@/assets/mail.svg"
+        /></label>
         <b-form-input
           id="email"
           v-model="user.email"
           type="email"
           class="input px-1"
+          :class="{ 'input-error': emailError }"
           style="width: 175px"
-        ></b-form-input></b-form
-      ><b-button variant="white" class="confirm-btn" @click="toggleEdit">
+        ></b-form-input>
+      </div>
+
+      <b-button
+        variant="white"
+        class="confirm-btn mt-2 mt-sm-0"
+        @click="toggleEdit"
+      >
         <img alt="confirm-button" src="@/assets/chevron-right-white.svg" />
       </b-button>
     </div>
@@ -59,6 +79,9 @@ export default {
   data() {
     return {
       editing: false,
+      errorMsg: "input",
+      phoneError: false,
+      emailError: false,
       user: {
         name: "Anna Maria Tamm Rodriguez Espinosa",
         id: 38912052254,
@@ -68,6 +91,23 @@ export default {
     };
   },
   computed: {
+    emailValidation() {
+      // Regular expression for email validation
+      const emailRegex = /\S+@\S+\.\S+/;
+
+      return emailRegex.test(this.user.email);
+    },
+    phoneNumberValidation() {
+      // Remove whitespaces from the phone number for validation
+      const cleanedPhone = this.user.phone.replace(/\s+/g, "");
+
+      // Regular expression for phone number validation
+      // ^\+\d{10}$ - Exactly 10 digits following '+' (total 11 characters)
+      // ^\d{9}$ - Exactly 9 digits without '+'
+      const phoneRegex = /^(\+\d{11}|\d{9})$/;
+
+      return phoneRegex.test(cleanedPhone);
+    },
     transitionName() {
       return this.selected ? "slide-fade-forward" : "slide-fade-backward";
     },
@@ -89,32 +129,38 @@ export default {
       this.editing = !this.editing;
     },
   },
+  watch: {
+    phoneNumberValidation() {
+      if (!this.phoneNumberValidation && this.user.phone) {
+        this.phoneError = true;
+        this.errorMsg = "phone number";
+      } else {
+        this.phoneError = false;
+      }
+    },
+    emailValidation() {
+      if (!this.emailValidation && this.user.email) {
+        this.emailError = true;
+        this.errorMsg = "email";
+      } else {
+        this.emailError = false;
+      }
+    },
+  },
 };
 </script>
 
 <style scoped>
-@media screen and (max-width: 600px) {
-  /* Adjust breakpoint as needed */
-  .editor {
-    flex-direction: column; /* Stack items vertically */
-    align-items: flex-start; /* Align items to the start of the container */
-    padding: 16px; /* Add some padding for better spacing */
-  }
-
-  .editor-label,
-  .input,
-  .confirm-btn {
-    width: 100%; /* Make elements take full width */
-    margin-bottom: 10px; /* Add some space between elements */
-  }
+.error {
+  font-weight: 300;
+  color: #eb5757;
+  font-size: 10px;
+  line-height: 1;
 }
 .editor {
   background-color: #f8f5fc;
   border-radius: 30px;
   min-height: 58px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .editor-label {
@@ -241,5 +287,14 @@ input[type="number"] {
   border-radius: 0;
   color: #413c3c;
   font-size: 14px;
+  border-bottom: 1px solid #d2d2d2;
+
+  &:hover {
+    border-bottom: 1px solid black;
+  }
+}
+
+.input-error {
+  border-bottom: 1px solid #eb5757 !important;
 }
 </style>
