@@ -15,6 +15,11 @@
       <UserDetailsCard class="my-4" />
       <PersonalInformation />
       <PepForm />
+      <b-row class="my-4"
+        ><b-col cols="12" class="d-flex justify-content-center"
+          ><b-button class="btn-continue">Continue</b-button></b-col
+        ></b-row
+      >
     </main>
   </div>
 </template>
@@ -44,6 +49,24 @@ export default {
   color: #2c3e50;
 }
 
+.btn-continue {
+  background-color: #2b0a57;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  color: #fdfdfd;
+  font-size: 16px;
+  width: 372px;
+  max-width: 75%;
+}
+
+.btn-continue:hover {
+  background-color: #9575cd !important;
+}
+
+.btn-continue:focus {
+  outline: 2px solid #2b0a57 !important;
+}
 .navbar {
   background-color: white;
   margin-bottom: 50px;
