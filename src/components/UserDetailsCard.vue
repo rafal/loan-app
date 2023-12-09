@@ -3,14 +3,14 @@
     <div
       v-if="editing"
       key="editing"
-      class="editor p-3 d-flex flex-column flex-sm-row justify-content-between align-items-center"
+      class="editor p-3 d-flex flex-column flex-lg-row justify-content-between align-items-center"
     >
       <div class="editor-label-wrapper d-flex flex-column">
         <span class="editor-label">Change your contact info</span>
         <span v-if="phoneError" class="error">Incorrect phone number</span>
         <span v-if="emailError" class="error">Incorrect email</span>
       </div>
-      <div class="d-flex my-2 my-sm-0">
+      <div class="d-flex my-2 my-lg-0">
         <label for="phone" class="d-flex align-items-center m-0"
           ><img src="@/assets/phone.svg"
         /></label>
@@ -23,7 +23,7 @@
           style="width: fit-content"
         ></b-form-input>
       </div>
-      <div class="d-flex my-2 my-sm-0">
+      <div class="d-flex my-2 my-lg-0">
         <label for="email" class="d-flex align-items-center m-0"
           ><img src="@/assets/mail.svg"
         /></label>
@@ -39,7 +39,7 @@
 
       <b-button
         variant="white"
-        class="confirm-btn mt-2 mt-sm-0"
+        class="confirm-btn mt-2 mt-lg-0"
         @click="toggleEdit"
       >
         <img alt="confirm-button" src="@/assets/chevron-right-white.svg" />
@@ -236,7 +236,7 @@ export default {
   line-height: 20px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 850px) {
   .card-bottom-half {
     flex-direction: column; /* Stack items vertically */
     padding: 1em 0;

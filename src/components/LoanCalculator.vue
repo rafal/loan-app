@@ -111,7 +111,7 @@ export default {
   data() {
     return {
       showAmountRange: false,
-      selected: false,
+      selected: true,
       amount: 2700,
       duration: 36,
       amountOptions: this.generateAmountOptions(),
@@ -178,7 +178,7 @@ export default {
 };
 </script>
 <style scoped>
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 850px) {
   /* Adjust breakpoint as needed */
   .loan-calculator_selected {
     flex-direction: column; /* Stack items vertically */
