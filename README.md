@@ -1,5 +1,8 @@
 # loan-app
 
+## Live Demo
+Check out the live demo of the application here: [Loan App Live Demo](https://rafal.github.io/loan-app/)
+
 ## Project setup
 ```
 npm install
