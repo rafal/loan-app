@@ -183,7 +183,7 @@ export default {
   .loan-calculator_selected {
     flex-direction: column; /* Stack items vertically */
     align-items: flex-start; /* Align items to the start of the container */
-    padding: 16px; /* Add some padding for better spacing */
+    padding: 24px; /* Add some padding for better spacing */
   }
 
   .editor-label,
