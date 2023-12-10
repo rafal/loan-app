@@ -12,7 +12,7 @@
             class="input-group d-flex align-items-center justify-content-center"
           >
             <div class="input-container mx-md-2 d-flex align-items-center">
-              <label for="amount" class="label d-flex flex-column"
+              <label for="amount" class="label d-flex flex-column pr-1"
                 ><span>Amount</span
                 ><span class="error" v-if="outOfRange">Out of range</span>
                 <span class="amount-range" v-if="isAmountFocused && !outOfRange"
@@ -79,7 +79,7 @@
             <div
               class="input-container d-flex align-items-center mb-2 mb-md-0 mx-md-3"
             >
-              <label for="duration" class="label">Duration</label>
+              <label for="duration" class="label pr-1">Duration</label>
               <b-form-select
                 id="duration"
                 class="select px-2"
@@ -344,6 +344,7 @@ export default {
   line-height: 24px;
   white-space: nowrap;
   margin: 0;
+  padding-right: 0;
 }
 
 .input,
