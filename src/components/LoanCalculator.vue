@@ -176,7 +176,7 @@ export default {
       showAmountSelect: false,
       isAmountFocused: false,
       showAmountRange: false,
-      selected: true,
+      selected: false,
       amount: 2700,
       duration: 36,
       durationOptions: this.generateDurationOptions(),
