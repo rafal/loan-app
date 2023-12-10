@@ -38,13 +38,19 @@
               class="input-container d-flex align-items-center mb-2 mb-md-0 mx-md-4"
             >
               <label for="duration" class="label">Duration</label>
-              <b-form-input
+              <b-form-select
                 id="duration"
+                class="select px-2"
                 v-model.number="duration"
-                class="input"
-                style="width: 50px"
-                type="number"
-              ></b-form-input>
+                style="width: 100px"
+                :options="[
+                  { value: 12, text: '12 months' },
+                  { value: 24, text: '24 months' },
+                  { value: 36, text: '36 months' },
+                  { value: 48, text: '48 months' },
+                  { value: 60, text: '60 months' },
+                ]"
+              ></b-form-select>
             </div>
             <div class="monthly-payment mt-4 mt-lg-0">
               <span class="label">Monthly Payment</span>
@@ -209,6 +215,7 @@ export default {
 
   .editor-label,
   .input,
+  .select,
   .confirm-btn {
     width: 100%; /* Make elements take full width */
   }
@@ -265,7 +272,8 @@ export default {
   margin: 0;
 }
 
-.input {
+.input,
+.select {
   color: #fdfdfd;
   background: none;
   border: none;
@@ -435,5 +443,10 @@ input[type="number"] {
 
 .out-of-range {
   border-bottom: 1px solid #eb5757 !important;
+}
+
+#duration:focus {
+  outline: none;
+  box-shadow: none;
 }
 </style>
