@@ -100,4 +100,55 @@ main {
   color: #413c3c;
   font-size: 16px;
 }
+
+.dropdown-toggle {
+  border: none;
+  background: none;
+  padding: 0;
+  border-radius: 50%;
+  box-shadow: none !important; /* Removes box-shadow */
+
+  &:focus,
+  &:hover,
+  &:active,
+  &:active {
+    box-shadow: none !important; /* Removes box-shadow for focus and active states */
+    outline: none !important; /* Removes outline */
+    background: none !important;
+    border: none !important;
+  }
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active,
+.btn-secondary:not(:disabled):not(.disabled):active,
+.show > .btn-secondary.dropdown-toggle {
+  /* color: #fff; */
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+.dropdown-item {
+  padding: 0.5rem;
+  font-weight: 300;
+  color: #413c3c;
+}
+
+.dropdown-item-text {
+  padding: 0;
+  width: fit-content;
+}
+
+.first-dropdown-item a,
+.last-dropdown-item a {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px !important;
+  /* add a dark grey border-bottom OR divider (we need a straight line below that doesn't take full width, leave some space on both sides) */
+  border-bottom: 1px solid #413c3c;
+}
+
+.dropdown-item-value {
+  /* Center text for regular items */
+  flex: 1;
+}
 </style>

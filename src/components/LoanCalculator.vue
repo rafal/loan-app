@@ -37,6 +37,35 @@
                 class="amount-select-icon"
                 @click="toggleAmountSelect"
               /> -->
+              <b-dropdown
+                no-caret
+                id="amount-dropdown"
+                class="amount-select-icon"
+                @click="toggleAmountSelect"
+              >
+                <template #button-content>
+                  <img src="@/assets/chevron-down.svg" style="width: 15px" />
+                </template>
+                <b-dropdown-item
+                  v-for="(option, index) in amountOptions"
+                  :key="option.value"
+                  @click="selectAmount(option.value)"
+                  :class="{
+                    'first-dropdown-item': index === 0,
+                    'last-dropdown-item': index === amountOptions.length - 1,
+                  }"
+                >
+                  <span class="dropdown-item-value">{{ option.text }}</span>
+                  <span class="dropdown-item-text" v-if="index === 0"
+                    >Min allowed</span
+                  >
+                  <span
+                    class="dropdown-item-text"
+                    v-if="index === amountOptions.length - 1"
+                    >Max allowed</span
+                  >
+                </b-dropdown-item>
+              </b-dropdown>
               <b-form-select
                 v-show="showAmountSelect"
                 id="amountSelect"
@@ -150,7 +179,6 @@ export default {
       selected: true,
       amount: 2700,
       duration: 36,
-      amountOptions: this.generateAmountOptions(),
       durationOptions: this.generateDurationOptions(),
       minAmount: 200, // Minimum loan amount
       maxAmount: 10000, // Maximum loan amount
@@ -160,6 +188,30 @@ export default {
     };
   },
   computed: {
+    amountOptions() {
+      console.log("generateAmountOptions");
+      let options = [];
+      let increment = 1000;
+
+      // Always include the minAmount as the first option
+      options.push({ value: this.minAmount, text: `${this.minAmount}€` });
+
+      // Start from the next rounded down multiple of 1000 greater than minAmount
+      let start = Math.ceil(this.minAmount / 1000) * 1000;
+
+      for (let i = start; i < this.maxAmount; i += increment) {
+        options.push({ value: i, text: `${i}€` });
+      }
+
+      // Always include the maxAmount as the last option
+      // Check to avoid duplicating the last option if maxAmount is a multiple of 1000
+      if (this.maxAmount !== start) {
+        options.push({ value: this.maxAmount, text: `${this.maxAmount}€` });
+      }
+
+      console.log(options);
+      return options;
+    },
     outOfRange() {
       return this.amount < this.minAmount || this.amount > this.maxAmount;
     },
@@ -178,6 +230,11 @@ export default {
   methods: {
     toggleAmountSelect() {
       this.showAmountSelect = !this.showAmountSelect;
+    },
+    selectAmount(value) {
+      // Logic to handle selection
+      this.amount = value;
+      // You might need to toggle the dropdown or perform other actions
     },
     onAmountFocus() {
       this.isAmountFocused = true;
@@ -203,13 +260,6 @@ export default {
     },
     toggleSelect() {
       this.selected = !this.selected;
-    },
-    generateAmountOptions() {
-      let options = [];
-      for (let i = this.minAmount; i <= this.maxAmount; i += 500) {
-        options.push({ value: i, text: `${i}€` });
-      }
-      return options;
     },
     generateDurationOptions() {
       let options = [];
