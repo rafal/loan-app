@@ -87,7 +87,7 @@ main {
   margin: 0 16px;
 
   @media (min-width: 768px) {
-    margin: 0 20%;
+    margin: 0 17.5%;
   }
 }
 

@@ -11,7 +11,7 @@
             cols="11"
             class="input-group d-flex align-items-center justify-content-center"
           >
-            <div class="input-container d-flex align-items-center">
+            <div class="input-container mx-md-2 d-flex align-items-center">
               <label for="amount" class="label d-flex flex-column"
                 ><span>Amount</span
                 ><span class="error" v-if="outOfRange">Out of range</span>
@@ -27,11 +27,24 @@
                 :class="{ 'out-of-range': outOfRange }"
                 min="200"
                 max="10000"
-                style="max-width: 70px"
+                style="max-width: 80x"
                 @focus="onAmountFocus"
                 @blur="onAmountBlur"
               ></b-form-input>
               <span class="euro-symbol">€</span>
+              <!-- <img
+                src="@/assets/chevron-down.svg"
+                class="amount-select-icon"
+                @click="toggleAmountSelect"
+              /> -->
+              <b-form-select
+                v-show="showAmountSelect"
+                id="amountSelect"
+                class="amount-select"
+                v-model="selectedAmount"
+                style="display: none; position: absolute; z-index: 10"
+                :options="[1000, 2000]"
+              ></b-form-select>
             </div>
 
             <div
@@ -130,6 +143,8 @@
 export default {
   data() {
     return {
+      selectedAmount: 1000,
+      showAmountSelect: false,
       isAmountFocused: false,
       showAmountRange: false,
       selected: true,
@@ -161,11 +176,20 @@ export default {
     },
   },
   methods: {
+    toggleAmountSelect() {
+      this.showAmountSelect = !this.showAmountSelect;
+    },
     onAmountFocus() {
       this.isAmountFocused = true;
     },
     onAmountBlur() {
+      console.log("onAmountBlur");
       this.isAmountFocused = false;
+      if (this.amount < this.minAmount) {
+        this.amount = this.minAmount;
+      } else if (this.amount > this.maxAmount) {
+        this.amount = this.maxAmount;
+      }
     },
     formatter(value) {
       if (!value) return "0";
@@ -308,7 +332,7 @@ export default {
   padding: 0 10px;
   overflow: hidden;
   max-width: 220px;
-  min-width: 220px;
+  min-width: 180px;
 }
 
 .monthly-payment_value {
@@ -409,7 +433,16 @@ input[type="number"] {
 
 .euro-symbol {
   position: absolute;
-  right: 5px; /* Adjust for proper positioning */
+  right: 10px; /* Adjust for proper positioning */
+}
+
+.amount-select-icon {
+  position: absolute;
+  right: -15px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 15px;
 }
 
 #amount {
