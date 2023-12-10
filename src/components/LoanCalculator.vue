@@ -35,14 +35,14 @@
             </div>
 
             <div
-              class="input-container d-flex align-items-center mb-2 mb-md-0 mx-md-4"
+              class="input-container d-flex align-items-center mb-2 mb-md-0 mx-md-3"
             >
               <label for="duration" class="label">Duration</label>
               <b-form-select
                 id="duration"
                 class="select px-2"
                 v-model.number="duration"
-                style="width: 100px"
+                style="width: 110px"
                 :options="[
                   { value: 12, text: '12 months' },
                   { value: 24, text: '24 months' },
@@ -448,5 +448,16 @@ input[type="number"] {
 #duration:focus {
   outline: none;
   box-shadow: none;
+}
+
+#duration {
+  padding-right: 30px; /* Increase right padding to make room for the icon */
+  -webkit-appearance: none; /* To remove default styling in some browsers */
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("@/assets/chevron-down.svg"); /* Path to your chevron icon */
+  background-repeat: no-repeat;
+  background-position: right 5px center; /* Adjust as necessary */
+  background-size: 15px; /* Adjust as necessary */
 }
 </style>
