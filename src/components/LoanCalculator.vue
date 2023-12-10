@@ -12,12 +12,18 @@
             class="input-group d-flex align-items-center justify-content-center"
           >
             <div class="input-container d-flex align-items-center">
-              <label for="amount" class="label">Amount</label>
+              <label for="amount" class="label d-flex flex-column"
+                ><span>Amount</span
+                ><span class="error" v-if="outOfRange"
+                  >Out of range</span
+                ></label
+              >
               <b-form-input
                 id="amount"
                 v-model.number="amount"
                 type="number"
                 class="input"
+                :class="{ 'out-of-range': outOfRange }"
                 min="200"
                 max="10000"
                 style="max-width: 70px"
@@ -129,6 +135,9 @@ export default {
     };
   },
   computed: {
+    outOfRange() {
+      return this.amount < this.minAmount || this.amount > this.maxAmount;
+    },
     transitionName() {
       return this.selected ? "slide-fade-forward" : "slide-fade-backward";
     },
@@ -402,5 +411,16 @@ input[type="number"] {
     line-height: 12px;
     vertical-align: text-top;
   }
+}
+
+.error {
+  font-weight: 300;
+  color: #eb5757;
+  font-size: 10px;
+  line-height: 0.5;
+}
+
+.out-of-range {
+  border-bottom: 1px solid #eb5757 !important;
 }
 </style>
