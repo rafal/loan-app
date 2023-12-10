@@ -14,8 +14,9 @@
             <div class="input-container d-flex align-items-center">
               <label for="amount" class="label d-flex flex-column"
                 ><span>Amount</span
-                ><span class="error" v-if="outOfRange"
-                  >Out of range</span
+                ><span class="error" v-if="outOfRange">Out of range</span>
+                <span class="amount-range" v-if="isAmountFocused && !outOfRange"
+                  >{{ minAmount }} - {{ maxAmount }} €</span
                 ></label
               >
               <b-form-input
@@ -27,6 +28,8 @@
                 min="200"
                 max="10000"
                 style="max-width: 70px"
+                @focus="onAmountFocus"
+                @blur="onAmountBlur"
               ></b-form-input>
               <span class="euro-symbol">€</span>
             </div>
@@ -121,6 +124,7 @@
 export default {
   data() {
     return {
+      isAmountFocused: false,
       showAmountRange: false,
       selected: true,
       amount: 2700,
@@ -151,6 +155,12 @@ export default {
     },
   },
   methods: {
+    onAmountFocus() {
+      this.isAmountFocused = true;
+    },
+    onAmountBlur() {
+      this.isAmountFocused = false;
+    },
     formatter(value) {
       if (!value) return "0";
     },
@@ -184,9 +194,6 @@ export default {
     handleAmountInput(value) {
       this.amount = value;
       this.amountRangeError = !this.isAmountInRange(value);
-    },
-    onAmountFocus() {
-      this.amountRangeError = false;
     },
   },
 };
@@ -416,6 +423,12 @@ input[type="number"] {
 .error {
   font-weight: 300;
   color: #eb5757;
+  font-size: 10px;
+  line-height: 0.5;
+}
+
+.amount-range {
+  font-weight: 300;
   font-size: 10px;
   line-height: 0.5;
 }
