@@ -3,7 +3,7 @@
     <div
       v-if="editing"
       key="editing"
-      class="editor p-3 d-flex flex-column flex-lg-row justify-content-between align-items-center"
+      class="editor py-3 px-3 px-md-4 d-flex flex-column flex-lg-row justify-content-between align-items-center"
     >
       <div class="editor-label-wrapper d-flex flex-column">
         <span class="editor-label">Change your contact info</span>
