@@ -66,35 +66,29 @@
                   >
                 </b-dropdown-item>
               </b-dropdown>
-              <b-form-select
-                v-show="showAmountSelect"
-                id="amountSelect"
-                class="amount-select"
-                v-model="selectedAmount"
-                style="display: none; position: absolute; z-index: 10"
-                :options="[1000, 2000]"
-              ></b-form-select>
             </div>
 
             <div
               class="input-container d-flex align-items-center mb-2 mb-md-0 mx-md-3"
             >
               <label for="duration" class="label pr-1">Duration</label>
-              <b-form-select
-                id="duration"
-                class="select px-2"
-                v-model.number="duration"
-                style="width: 110px"
-                :options="[
-                  { value: 12, text: '12 months' },
-                  { value: 24, text: '24 months' },
-                  { value: 36, text: '36 months' },
-                  { value: 48, text: '48 months' },
-                  { value: 60, text: '60 months' },
-                ]"
-              ></b-form-select>
+              <b-dropdown no-caret id="amount-dropdown" class="my-2 my-md-0">
+                <template #button-content>
+                  <span
+                    >{{ duration }} months
+                    <img src="@/assets/chevron-down.svg" style="width: 15px" />
+                  </span>
+                </template>
+                <b-dropdown-item
+                  v-for="option in durationOptions"
+                  :key="option.value"
+                  @click="selectDuration(option.value)"
+                >
+                  <span class="dropdown-item-value">{{ option.text }}</span>
+                </b-dropdown-item>
+              </b-dropdown>
             </div>
-            <div class="monthly-payment mt-4 mt-lg-0">
+            <div class="monthly-payment">
               <span class="label">Monthly Payment</span>
               <span class="monthly-payment_value"
                 >{{ monthlyPayment }}<span class="euro">€</span></span
@@ -172,6 +166,13 @@
 export default {
   data() {
     return {
+      durationOptions: [
+        { value: 12, text: "12 months" },
+        { value: 24, text: "24 months" },
+        { value: 36, text: "36 months" },
+        { value: 48, text: "48 months" },
+        { value: 60, text: "60 months" },
+      ],
       selectedAmount: 1000,
       showAmountSelect: false,
       isAmountFocused: false,
@@ -179,7 +180,6 @@ export default {
       selected: false,
       amount: 2700,
       duration: 36,
-      durationOptions: this.generateDurationOptions(),
       minAmount: 200, // Minimum loan amount
       maxAmount: 10000, // Maximum loan amount
       minDuration: 6, // Minimum duration in months
@@ -232,9 +232,10 @@ export default {
       this.showAmountSelect = !this.showAmountSelect;
     },
     selectAmount(value) {
-      // Logic to handle selection
       this.amount = value;
-      // You might need to toggle the dropdown or perform other actions
+    },
+    selectDuration(value) {
+      this.duration = value;
     },
     onAmountFocus() {
       this.isAmountFocused = true;
@@ -260,13 +261,6 @@ export default {
     },
     toggleSelect() {
       this.selected = !this.selected;
-    },
-    generateDurationOptions() {
-      let options = [];
-      for (let i = this.minDuration; i <= this.maxDuration; i++) {
-        options.push({ value: i, text: `${i} months` });
-      }
-      return options;
     },
     isAmountInRange(amount) {
       return amount >= this.minAmount && amount <= this.maxAmount;
