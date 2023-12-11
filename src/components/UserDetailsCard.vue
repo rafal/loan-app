@@ -257,6 +257,10 @@ export default {
   justify-content: center;
   height: 34px;
   width: 34px;
+
+  @media screen and (max-width: 850px) {
+    right: 0 !important;
+  }
 }
 
 .confirm-btn:hover,
