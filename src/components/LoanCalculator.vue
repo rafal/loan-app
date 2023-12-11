@@ -42,6 +42,7 @@
                 id="amount-dropdown"
                 class="amount-select-icon"
                 @click="toggleAmountSelect"
+                offset="-200"
               >
                 <template #button-content>
                   <img src="@/assets/chevron-down.svg" style="width: 15px" />
